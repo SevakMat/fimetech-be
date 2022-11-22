@@ -27,6 +27,13 @@ export class SignUpDTO {
   @IsOptional()
   userId: string;
 
+  @IsOptional()
+  accessToken?: string;
+
+  @IsOptional()
+  reffreshToken?: string;
+
+
 
 
   // as on sign-up user will have default image. Image could be changed via correspondent endpoint.

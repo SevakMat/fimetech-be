@@ -8,11 +8,6 @@ import { SignUpDTO } from './dto/sign-up.dto';
 export class AuthController {
   constructor(private readonly authService: AuthService) { }
 
-  @Post('sign-in')
-  private signIn(@Body() loginDTO: LoginDTO): Promise<any> {
-    return this.authService.signIn(loginDTO);
-  }
-
   @Post('sign-out')
   private signOut(): Promise<any> {
     return this.authService.signOut();
@@ -24,7 +19,7 @@ export class AuthController {
     return this.authService.SignInByRefreshTokenDTO(refreshTokenDTO);
   }
 
-
+  //done 
   @Post('sign-up')
   private async signUp(@Body() signUpDTO: SignUpDTO): Promise<any> {
     await this.authService.signUp(signUpDTO);
@@ -34,5 +29,10 @@ export class AuthController {
     }
   }
 
+  @Post('sign-in')
+  private signIn(@Body() loginDTO: LoginDTO): Promise<any> {
+    return this.authService.signIn(loginDTO);
+    
+  }
 
 }

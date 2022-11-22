@@ -11,21 +11,29 @@ import { UsersRepository } from "./users.repository";
 export class UsersService {
   constructor(private readonly usersRepository: UsersRepository) { }
 
-  async getUserById(userId: string): Promise<any> {
-    return this.usersRepository.findOne({ userId })
-  }
-
-  async getUsers(): Promise<any[]> {
-    return this.usersRepository.find({});
-  }
 
   async createUser(createUserDto: SignUpDTO): Promise<User> {
     return this.usersRepository.create({
       userId: uuidv4(),
+      accessToken: (Math.random() + 1).toString(36).substring(2) as string,
+      reffreshToken: (Math.random() + 1).toString(36).substring(2) as string,
       ...createUserDto
     })
   }
 
+  async getUserByEmail(userEmail: string): Promise<any> {
+    console.log(userEmail);
+
+    return this.usersRepository.findOne({ userEmail })
+  }
+
+
+
+
+
+  // async getUsers(): Promise<any[]> {
+  //   return this.usersRepository.find({});
+  // }
   // async updateUser(userId: string, userUpdates: UpdateUserDto): Promise<User> {
   //   return this.usersRepository.findOneAndUpdate({ userId }, userUpdates);
   // }

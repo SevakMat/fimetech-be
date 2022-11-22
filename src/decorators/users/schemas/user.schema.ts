@@ -14,19 +14,19 @@ export class User {
   @Prop()
   lastName: string;
 
-  @Prop([String])
+  @Prop(String)
   email: string;
 
-  @Prop([String])
+  @Prop(String)
   phoneNumber: string;
 
-  @Prop([String])
+  @Prop(String)
   password: string;
 
-  @Prop([String])
+  @Prop(String)
   accessToken: string;
 
-  @Prop([String])
+  @Prop(String)
   reffreshToken: string;
 
 }

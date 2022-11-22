@@ -10,8 +10,9 @@ import { User, UserDocument } from "./schemas/user.schema";
 export class UsersRepository {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) { }
 
+
   async findOne(userFilterQuery: FilterQuery<any>): Promise<any> {
-    return this.userModel.findOne(userFilterQuery);
+    return this.userModel.findOne({ "email": userFilterQuery.userEmail });
   }
 
   async find(usersFilterQuery: FilterQuery<any>): Promise<User[]> {
