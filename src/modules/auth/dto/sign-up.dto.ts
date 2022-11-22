@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsMobilePhone } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsMobilePhone, IsOptional } from 'class-validator';
 import { ERROR_MESSAGES } from 'src/common/constants';
 
 import { IsFile } from 'src/core/validators';
@@ -18,13 +18,21 @@ export class SignUpDTO {
   @IsNotEmpty()
   phoneNumber: string;
 
-  @IsNotEmpty()
-  address: string;
+  // @IsNotEmpty()
+  // address: string;
 
-// as on sign-up user will have default image. Image could be changed via correspondent endpoint.
-//   @IsFile(
-//     { mime: ['image/jpg', 'image/png'] },
-//     { message: ERROR_MESSAGES.INVALID_FILE },
-//   )
-//   profileImage: any;
+  @IsNotEmpty()
+  password: string;
+
+  @IsOptional()
+  userId: string;
+
+
+
+  // as on sign-up user will have default image. Image could be changed via correspondent endpoint.
+  //   @IsFile(
+  //     { mime: ['image/jpg', 'image/png'] },
+  //     { message: ERROR_MESSAGES.INVALID_FILE },
+  //   )
+  //   profileImage: any;
 }
