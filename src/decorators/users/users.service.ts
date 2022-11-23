@@ -21,10 +21,6 @@ export class UsersService {
     return this.usersRepository.create(signUpDTO, userId, salt)
   }
 
-
-
-
-
   async findOneUserByEmail(email: string): Promise<User> {
     return this.usersRepository.findOne({ email })
   }

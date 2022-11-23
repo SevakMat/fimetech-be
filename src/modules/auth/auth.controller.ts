@@ -37,6 +37,17 @@ export class AuthController {
   }
 
   @UseGuards(JwtAuthGuard)
+  @Post('add-addresses')
+  private addAddresses(@Body() loginDTO: LoginDTO): Promise<any> {
+    return this.authService.signIn(loginDTO);
+  }
+
+
+  
+  
+
+
+  @UseGuards(JwtAuthGuard)
   @Get('testing')
   private testing(): any {
     return '1111111111111111111'
