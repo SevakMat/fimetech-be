@@ -24,11 +24,6 @@ export class SignUpDTO {
   @IsNotEmpty()
   password: string;
 
-  @IsOptional()
-  userId: string;
-
-
-
   // as on sign-up user will have default image. Image could be changed via correspondent endpoint.
   //   @IsFile(
   //     { mime: ['image/jpg', 'image/png'] },

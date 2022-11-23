@@ -14,21 +14,14 @@ export class User {
   @Prop()
   lastName: string;
 
-  @Prop([String])
+  @Prop(String)
   email: string;
 
-  @Prop([String])
+  @Prop(String)
   phoneNumber: string;
 
-  @Prop([String])
-  password: string;
-
-  @Prop([String])
-  accessToken: string;
-
-  @Prop([String])
-  reffreshToken: string;
-
+  @Prop(String)
+  salt: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
