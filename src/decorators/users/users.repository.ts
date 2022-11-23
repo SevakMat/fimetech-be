@@ -19,8 +19,8 @@ export class UsersRepository {
     return this.userModel.find(usersFilterQuery)
   }
 
-  async create(user: SignUpDTO): Promise<User> {
-    const newUser = new this.userModel(user);
+  async create(user: SignUpDTO, userId: string, salt: string): Promise<User> {
+    const newUser = new this.userModel({ ...user, userId, salt });
     return newUser.save()
   }
 

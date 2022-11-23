@@ -21,14 +21,7 @@ export class User {
   phoneNumber: string;
 
   @Prop(String)
-  password: string;
-
-  @Prop(String)
-  accessToken: string;
-
-  @Prop(String)
-  reffreshToken: string;
-
+  salt: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

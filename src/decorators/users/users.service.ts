@@ -1,3 +1,4 @@
+import { hashPassword } from "@common/utils";
 import { SignUpDTO } from "@modules/auth/dto/sign-up.dto";
 import { Injectable } from "@nestjs/common";
 import { v4 as uuidv4 } from 'uuid';
@@ -12,19 +13,20 @@ export class UsersService {
   constructor(private readonly usersRepository: UsersRepository) { }
 
 
-  async createUser(createUserDto: SignUpDTO): Promise<User> {
-    return this.usersRepository.create({
-      userId: uuidv4(),
-      accessToken: (Math.random() + 1).toString(36).substring(2) as string,
-      reffreshToken: (Math.random() + 1).toString(36).substring(2) as string,
-      ...createUserDto
-    })
+  async createUser(signUpDTO: SignUpDTO): Promise<User> {
+    // todo add try catch
+    const salt = await hashPassword(signUpDTO.password);
+    const userId = uuidv4() as string;
+
+    return this.usersRepository.create(signUpDTO, userId, salt)
   }
 
-  async getUserByEmail(userEmail: string): Promise<any> {
-    console.log(userEmail);
 
-    return this.usersRepository.findOne({ userEmail })
+
+
+
+  async findOneUserByEmail(email: string): Promise<User> {
+    return this.usersRepository.findOne({ email })
   }
 
 

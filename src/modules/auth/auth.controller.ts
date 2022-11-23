@@ -1,8 +1,11 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { RefreshTokenDTO } from './dto/login-by-refresh-token';
 import { LoginDTO } from './dto/login.dto';
 import { SignUpDTO } from './dto/sign-up.dto';
+import { JwtAuthGuard } from './strategy/jwt-auth.guard';
+import { LocalAuthGuard } from './strategy/local-auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -28,11 +31,16 @@ export class AuthController {
       success: true
     }
   }
-
   @Post('sign-in')
-  private signIn(@Body() loginDTO: LoginDTO): Promise<any> {
-    return this.authService.signIn(loginDTO);
-    
+  private signIn(@Body() req): Promise<any> {
+    return this.authService.signIn(req);
+
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('testing')
+  private testing(): any {
+    return '1111111111111111111'
   }
 
 }

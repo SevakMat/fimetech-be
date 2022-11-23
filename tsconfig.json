@@ -18,17 +18,36 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@common/*": ["src/common/*"],
-      "@core/*": ["src/core/*"],
-      "@modules/*": ["src/modules/*"],
-      
-      "@interfaces/*": ["src/common/interfaces/*"],
-      "@enums/*": ["src/common/enums/*"],
-      "@constants/*": ["src/common/constants/*"],
-
-      "@validators/*": ["src/core/validators/*"],
-      "@guards/*": ["src/core/guards/*"],
-      "@decorators/*": ["src/core/decorators/*"],
+      "@common/*": [
+        "src/common/*"
+      ],
+      "@core/*": [
+        "src/core/*"
+      ],
+      "@modules/*": [
+        "src/modules/*"
+      ],
+      "@interfaces/*": [
+        "src/common/interfaces/*"
+      ],
+      "@enums/*": [
+        "src/common/enums/*"
+      ],
+      "@constants/*": [
+        "src/common/constants/*"
+      ],
+      "@utils/*": [
+        "src/common/utils/*"
+      ],
+      "@validators/*": [
+        "src/core/validators/*"
+      ],
+      "@guards/*": [
+        "src/core/guards/*"
+      ],
+      "@decorators/*": [
+        "src/core/decorators/*"
+      ],
     }
   }
 }
