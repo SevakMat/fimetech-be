@@ -5,7 +5,6 @@ import { RefreshTokenDTO } from './dto/login-by-refresh-token';
 import { LoginDTO } from './dto/login.dto';
 import { SignUpDTO } from './dto/sign-up.dto';
 import { JwtAuthGuard } from './strategy/jwt-auth.guard';
-import { LocalAuthGuard } from './strategy/local-auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -31,10 +30,10 @@ export class AuthController {
       success: true
     }
   }
-  @Post('sign-in')
-  private signIn(@Body() req): Promise<any> {
-    return this.authService.signIn(req);
 
+  @Post('sign-in')
+  private signIn(@Body() loginDTO: LoginDTO): Promise<any> {
+    return this.authService.signIn(loginDTO);
   }
 
   @UseGuards(JwtAuthGuard)

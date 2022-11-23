@@ -12,7 +12,7 @@ export class UsersRepository {
 
 
   async findOne(userFilterQuery: FilterQuery<any>): Promise<any> {
-    return this.userModel.findOne({ "email": userFilterQuery.userEmail });
+    return this.userModel.findOne({ "email": userFilterQuery.email });
   }
 
   async find(usersFilterQuery: FilterQuery<any>): Promise<User[]> {

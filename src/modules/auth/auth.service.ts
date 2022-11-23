@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { User } from 'src/decorators/users/schemas/user.schema';
 import { UsersService } from 'src/decorators/users/users.service';
 import { RefreshTokenDTO } from './dto/login-by-refresh-token';
@@ -13,11 +13,9 @@ export class AuthService {
 
     constructor(private readonly userService: UsersService, private readonly jwtService: JwtService) { }
 
-
     public signOut(): Promise<any> {
         return { success: "success" } as any
     }
-
 
     public SignInByRefreshTokenDTO(refreshTokenDTO: RefreshTokenDTO): Promise<any> {
         return {
@@ -34,17 +32,18 @@ export class AuthService {
         } as any
     }
 
-
     public signIn(user: any): any {
-
-        // change this giant mind fuck
-        return {
-            access_token: this.jwtService.sign(user),
-            statusCode: 200
-        }
+        return this.validateUser(user.email, user.password)
+            .then((res) => {
+                return {
+                    access_token: this.jwtService.sign(user),
+                    statusCode: 200
+                }
+            })
+            .catch((e) => {
+                throw new HttpException('UNAUTHORIZED', HttpStatus.UNAUTHORIZED);
+            })
     }
-
-
 
     public async signUp(signUpDTO: SignUpDTO): Promise<User> {
         return this.userService.createUser(signUpDTO);
@@ -52,13 +51,14 @@ export class AuthService {
 
     async validateUser(email: string, password: string): Promise<any> {
         const user = await this.userService.findOneUserByEmail(email);
-        if (!user) return null;
-        const isPasswordValid = compareHash(password, user.salt);
+        if (!user) {
+            throw Error
+        }
+        const isPasswordValid = await compareHash(password, user.salt);
         if (isPasswordValid) {
-            delete user.salt;
-
+            delete user.salt
             return user;
         }
-        return null;
+        throw Error;
     }
 }
