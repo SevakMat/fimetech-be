@@ -2,8 +2,13 @@ import { IsNotEmpty } from 'class-validator';
 
 export class AddressDTO {
   @IsNotEmpty()
-  lat: string
+  userId: string
 
   @IsNotEmpty()
-  lng: string
+  addresses: [
+    {
+      lat:string,
+      lng:string
+    }  
+  ]
 }

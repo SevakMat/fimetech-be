@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { User } from 'src/decorators/users/schemas/user.schema';
-import { UsersService } from 'src/decorators/users/users.service';
+import { User } from '@modules/users/schemas/user.schema';
+import { UsersService } from '@modules/users/users.service';
 import { RefreshTokenDTO } from './dto/login-by-refresh-token';
 import { LoginDTO } from './dto/login.dto';
 import { SignUpDTO } from './dto/sign-up.dto';
@@ -36,6 +36,7 @@ export class AuthService {
         return this.validateUser(user.email, user.password)
             .then((res) => {
                 return {
+                    user:res,
                     access_token: this.jwtService.sign(user),
                     statusCode: 200
                 }
