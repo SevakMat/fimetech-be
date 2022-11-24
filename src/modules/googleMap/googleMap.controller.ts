@@ -1,6 +1,6 @@
 import { Body, Controller, Post, UseGuards } from "@nestjs/common";
-import { AddressDTO } from "../dto/address.dto";
-import { JwtAuthGuard } from "../strategy/jwt-auth.guard";
+import { AddressDTO } from "./dto/address.dto";
+import { JwtAuthGuard } from "../auth/strategy/jwt-auth.guard";
 import { GoogleMapService } from "./googleMap.service";
 
 
@@ -13,8 +13,8 @@ export class GoogleMapController {
 
   @UseGuards(JwtAuthGuard)
   @Post('addresses')
-  private getAddresses(@Body() addressDTO: AddressDTO[]): Promise<any> {
-    return this.googleMapService.getAddresses(addressDTO);
+  private getAddresses(@Body() addressDTO: AddressDTO): Promise<any> {
+    return this.googleMapService.setAddresses(addressDTO);
   }
 
 

@@ -1,25 +1,30 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from 'mongoose';
 
-export type UserDocument = Levle1 & Document;
+export type UserDocument = Levle & Document;
 
 @Schema()
-export class Levle1 {
+export class Levle {
   @Prop()
   userId: string;
 
   @Prop()
-  addresses: [
-    [
-      {
-        lat: string;
-        lng: string;
-      }
-    ]
+  addresses: [addressesList]
+
+}
+
+@Schema()
+export class addressesList {
+  addressesList:[
+    {
+      lat: string;
+      lng: string;
+    }
   ]
 }
 
-export const UserSchema = SchemaFactory.createForClass(Levle1);
+
+export const LevleSchema = SchemaFactory.createForClass(Levle);
 
 
 // {
