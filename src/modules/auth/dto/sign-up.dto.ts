@@ -18,8 +18,8 @@ export class SignUpDTO {
   @IsNotEmpty()
   phoneNumber: string;
 
-  // @IsNotEmpty()
-  // address: string;
+  @IsNotEmpty()
+  level: string;
 
   @IsNotEmpty()
   password: string;

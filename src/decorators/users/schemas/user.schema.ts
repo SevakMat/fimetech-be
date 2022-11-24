@@ -20,6 +20,9 @@ export class User {
   @Prop(String)
   phoneNumber: string;
 
+  @Prop()
+  level: string;
+
   @Prop(String)
   salt: string;
 }
