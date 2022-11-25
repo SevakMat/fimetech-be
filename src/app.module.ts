@@ -1,13 +1,21 @@
 import { Module } from '@nestjs/common';
 import { AuthModule } from './modules/auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
     AuthModule,
-    MongooseModule.forRoot('mongodb+srv://ClausterForMy:ClausterForMyPassing@cluster0.l9s4wwq.mongodb.net/test'),
-    ConfigModule.forRoot()
+    ConfigModule.forRoot(),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => {        
+        return {
+          uri: configService.get('MONGO_SRV')
+      }
+    },
+      inject: [ConfigService]
+    }),
   ],
   controllers: [],
   providers: [],
