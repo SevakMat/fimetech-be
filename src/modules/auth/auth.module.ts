@@ -6,7 +6,7 @@ import { PassportModule } from '@nestjs/passport';
 import { LocalStrategy } from './strategy/local.strategy';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './strategy/jwt.strategy';
-import { GoogleMapModule } from '../googleMap/googleMap.module';
+import { ScrappingModule } from '@modules/scrapping/scrapping.module';
 
 @Module({
   imports: [
@@ -15,8 +15,9 @@ import { GoogleMapModule } from '../googleMap/googleMap.module';
       secret: 'strong-secret',
       signOptions: { expiresIn: '600s' },
     }),
-    UsersModule,
-    GoogleMapModule
+    ScrappingModule,
+    UsersModule
+
   ],
   controllers: [AuthController],
   providers: [AuthService, LocalStrategy, JwtStrategy]

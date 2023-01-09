@@ -36,7 +36,7 @@ export class AuthService {
         return this.validateUser(user.email, user.password)
             .then((res) => {
                 return {
-                    user:res,
+                    user: res,
                     access_token: this.jwtService.sign(user),
                     statusCode: 200
                 }
@@ -52,12 +52,16 @@ export class AuthService {
 
     async validateUser(email: string, password: string): Promise<any> {
         const user = await this.userService.findOneUserByEmail(email);
+        console.log("useeeer-", user);
+
         if (!user) {
             throw Error
         }
         const isPasswordValid = await compareHash(password, user.salt);
+
         if (isPasswordValid) {
-            delete user.salt
+            user.salt = undefined
+
             return user;
         }
         throw Error;

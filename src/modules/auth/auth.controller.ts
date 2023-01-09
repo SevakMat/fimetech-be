@@ -36,21 +36,15 @@ export class AuthController {
     return this.authService.signIn(loginDTO);
   }
 
-  @UseGuards(JwtAuthGuard)
-  @Post('add-addresses')
-  private addAddresses(@Body() loginDTO: LoginDTO): Promise<any> {
-    return this.authService.signIn(loginDTO);
-  }
+  // @UseGuards(JwtAuthGuard)
+  // @Post('add-addresses')
+  // private addAddresses(@Body() loginDTO: LoginDTO): Promise<any> {
+  //   return this.authService.signIn(loginDTO);
+  // }
 
-
-  
-  
-
-
-  @UseGuards(JwtAuthGuard)
-  @Get('testing')
-  private testing(): any {
-    return '1111111111111111111'
-  }
-
+  // @UseGuards(JwtAuthGuard)
+  // @Post('add-car')
+  // private addCar(@Body() addCarDTO: AddCarDTO): Promise<any> {
+  //   return this.authService.signIn(addCarDTO);
+  // }
 }
